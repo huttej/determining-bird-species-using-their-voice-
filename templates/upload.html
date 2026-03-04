@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Vocalize</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Roboto:400,700&display=swap" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="/static/css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="/static/css/responsive.css" rel="stylesheet" />
+  <!-- Custom styles for login form -->
+  <link href="/static/css/form-style.css" rel="stylesheet" />
+</head>
+
+<body class="sub_page">
+  <div class="hero_area">
+    <!-- header section starts -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="index.html">
+            <img src="/static/images/logo.png" alt="">
+            <span>
+              Songbird
+            </span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex mx-auto flex-column flex-lg-row align-items-center">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('upload') }}">Upload</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('index') }}">Logout</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+  </div>
+
+  <!-- login section -->
+  <section class="login_section layout_padding">
+    <div class="container">
+      <div class="d-flex flex-column align-items-center">
+        <div class="row justify-content-center">
+          <div class="col-md-12">
+            <div class="box">
+              <div class="img-box">
+                <img src="/statis/images/n-2.jpg" alt="">
+              </div>
+              <div class="form-container" style="margin-top: px;">
+                <div class="message-container">
+                  {% if message %}
+                    <div class="alert alert-warning">{{ message }}</div>
+                  {% endif %}
+                </div>
+
+              <div class="form-container">
+                <form action="{{url_for('upload')}}" method="post" class="login-form" enctype="multipart/form-data">
+                  <input type="file" class="form-control" id="audioInput" name="audio" accept="audio/*" required>
+                  <button type="submit" class="btn btn-primary mt-3">Analyze Audio</button>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end login section -->
+
+
+  
+  {% if prediction %}
+    <div class="container">
+      <div class="jumbotron">
+        <center>
+          <h2 class="page-title">Bird Sound Recognition</h2>
+        </center>
+
+        <div class="form-section">
+          {% if common_name == 'Unknown Bird' %}
+            <center>
+              <h1>Can't find the bird details</h1>
+            </center>
+          {% else %}
+            <div class="bird-info mt-4">
+              <center>
+                <img src="{{ image_path }}" alt="{{ common_name }}" class="bird-image" height="200px" width="300px"><br><br>
+              </center>
+
+              <ul style="margin-left: 250px;">
+                <li>
+                  <h3>Predicted Bird: {{ common_name }} </h3>
+                </li>
+                <li>
+                  <h3>Scientific Name: ({{ scientific_name }})</h3>
+                </li>
+                <li>
+                  <p><strong>Description:</strong> {{ description }}</p>
+                </li>
+                <li>
+                  <p><strong>Locations:</strong> {{ locations }}</p>
+                </li>
+                <li>
+                  <p><strong>Life Span:</strong> {{ life_span }}</p>
+                </li>
+                <li>
+                  <p><strong>Migration:</strong> ({{ migration }})</p>
+                </li>
+                <li>
+                  <p><strong>Season Wise:</strong> {{ season_wise }}</p>
+                </li>
+                
+                <li>
+                  <div class="audio-player">
+                    <p><strong>Uploaded Audio:</strong></p>
+                    <audio controls>
+                      <source src="{{ url_for('static', filename='audio/' + path.split('/')[-1]) }}" type="audio/{{ path.split('.')[-1] }}">
+                      Your browser does not support the audio element.
+                    </audio>
+                  </div>
+                </li>
+              </ul>
+
+              <!-- <div class="retry-btn">
+                <button type="button" class="btn btn-secondary" onclick="retryUpload()">Upload New File</button>
+              </div> -->
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+{% endif %}
+
+
+  <script>
+    function retryUpload() {
+      document.getElementById('uploadForm').reset();
+    }
+  </script>
+
+  <script type="text/javascript" src="/static/js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="/static/js/bootstrap.js"></script>
+</body>
+</html>
+

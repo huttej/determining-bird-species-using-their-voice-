@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Vitamin Deficiency</title>
+
+    <!-- slider stylesheet -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css"
+    />
+
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css" />
+
+    <!-- fonts style -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Custom styles for this template -->
+    <link href="/static/css/style.css" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="/static/css/responsive.css" rel="stylesheet" />
+  </head>
+
+  <body class="sub_page">
+    <div class="hero_area">
+      <!-- header section strats -->
+      <header class="header_section">
+        <div class="container">
+          <nav class="navbar navbar-expand-lg custom_nav-container">
+            <a class="navbar-brand" href="index.html">
+              <img src="/static/images/yoga.png" alt="" />
+              <span> Vitamin Deficiency </span>
+            </a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="s-1"> </span>
+              <span class="s-2"> </span>
+              <span class="s-3"> </span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <div
+                class="d-flex ml-auto flex-column flex-lg-row align-items-center"
+              >
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/model_performance">
+                      Model Performance</a
+                    >
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="/upload"
+                      >Image Classification <span class="sr-only">(current)</span></a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/signin"> Logout</a>
+                  </li>
+
+               
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+      <!-- end header section -->
+    </div>
+
+    <!-- contact section -->
+
+    <section class="contact_section layout_padding">
+      <div class="container">
+        <div class="heading_container"></div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            {% if msg %}
+            <h6 style="align-items: center">Uploaded Image</h2>
+            <img
+              src=" {{url_for('send_image', filename=image_name)}}"
+              style="
+                width: 20vw;
+                height: 20vh;
+              "
+            /><br>
+            
+              <b>Results: </b>{{msg}}
+              {% block body %}
+            {% if msg == 'Acral Lentiginous Melanoma' %}
+            <p><b>Vitamin Suggetion:</b>Vitamin - A, C, E, D, B12</p><br>
+
+            <!-- <h6>Suggested Food:</h6> -->
+              <p>Foods that may help support overall health and skin health include:<br>1.Fruits: Berries, oranges, apples<br>
+              2. Vegetables: Leafy greens, carrots, tomatoes<br>
+            3.Omega-3 fatty acids: Fatty fish (salmon, mackerel), nuts, seeds</p>
+
+            {% elif msg == 'Beaus Line'%}
+            <p><b>Vitamin Suggetion:</b>Vitamin B12</p><br>
+            <!-- <h6>Suggested Food:</h6> -->
+              <p>Foods that may help support nail health include:1.Protein sources:<br> Lean meats, poultry, fish, eggs, dairy, legumes, nuts<br>
+              2. Biotin-rich foods: Whole grains, nuts, egg yolks, mushrooms<br>
+           
+           </p>
+           {% elif msg == 'Blue Finger'%}
+           <p><b>Vitamin Suggetion:</b>Vitamin B12</p><br>
+           <!-- <h6>Suggested Food:</h6> -->
+             <p>Foods that may help support heart health and circulation include:<br>1.Fruits: Berries, oranges, pomegranates<br>
+             2. Vegetables: Leafy greens, beets, carrots<br>
+             3.Omega-3 fatty acids: Fatty fish (salmon, trout), chia seeds, walnuts
+          </p>
+          {% elif msg == 'Clubbing'%}
+          <p><b>Vitamin Suggetion:</b>Vitamin B12</p><br>
+          <!-- <h6>Suggested Food:</h6> -->
+          <p>Foods that may help support overall cardiovascular health include:<br>1.Fruits: Berries, oranges, pomegranates<br>
+            2. Lean proteins: Chicken breast, turkey, tofu
+            3.Heart-healthy fats: Avocado, olive oil, nuts
+         </p>
+         {% elif msg == 'Koilonychia'%}
+         <p><b>Vitamin Suggetion:</b>Vitamin - Iron</p><br>
+         <!-- <h6>Suggested Food:</h6> -->
+           <p>Foods that may help support iron levels and overall health include:<br>1.Iron-rich foods: Lean meats, poultry, fish, beans, lentils, tofu, fortified cereals<br>
+           2. Vitamin C-rich foods: Citrus fruits, strawberries, bell peppers, tomatoes<br>
+        </p>
+    </p>
+    {% elif msg == 'Lindsay-s Nail'%}
+    <p><b>Vitamin Suggetion:</b>Vitamin - Zinc</p><br>
+    <!-- <h6>Suggested Food:</h6> -->
+      <p>Foods that may help support nail health include:<br>1.Protein sources: Lean meats, poultry, fish, eggs, dairy, legumes, nuts<br>
+      2. Biotin-rich foods: Whole grains, nuts, egg yolks, mushrooms<br>
+   </p>
+   {% elif msg == 'lip_and_tongue'%}
+   <p><b>Vitamin Suggetion:</b>Vitamin - B complex (B2, B3, B6, B12)</p><br>
+
+    <!-- <h6>Suggested Food:</h6> -->
+      <p>Foods that may help support oral health include:<br>
+        1.Calcium-rich foods: Dairy products (milk, cheese, yogurt), leafy greens, almonds<br>
+      2. Vitamin C-rich foods: Citrus fruits, strawberries, bell peppers<br>
+   </p>
+  
+   {% elif msg == 'Muehrckes Lines'%}
+   <p><b>Vitamin Suggetion:</b>Vitamin -A,C,E,D and B Complex(B6, B9, B12) </p><br>
+
+   <!-- <h6>Suggested Food:</h6> -->
+     <p>Foods that may help support nail health include:<br>
+     1. Protein sources: Lean meats, poultry, fish, eggs, dairy, legumes, nuts<br>
+     2.Biotin-rich foods: Whole grains, nuts, egg yolks, mushrooms<br>
+  </p>
+
+  {% elif msg == 'Onychogryphosis'%}
+  <p><b>Vitamin Suggetion:</b>Vitamin - A </p><br> 
+
+  <!-- <h6>Suggested Food:</h6> -->
+    <p>Foods that may help support nail health include:<br>
+    1. Protein sources: Lean meats, poultry, fish, eggs, dairy, legumes, nuts
+    2.Biotin-rich foods: Whole grains, nuts, egg yolks, mushrooms<br>
+ </p>
+ {% elif msg == 'Pitting'%}
+ <p><b>Vitamin Suggetion:</b>Vitamin - A,C,D </p><br> 
+
+ <!-- <h6>Suggested Food:</h6> -->
+   <p>Foods that may help support overall skin and nail health include:
+   1. Vegetables: Leafy greens, carrots, tomatoes<br>
+   2.Biotin-rich foods: Whole grains, nuts, egg yolks, mushrooms<br>
+   3.Protein sources: Lean meats, poultry, fish, tofu, legumes<br>
+</p>
+{% else %}
+<p><b>Vitamin Suggetion:</b>Vitamin - Iron </p><br> 
+<!-- <h6>Suggested Food:</h6> -->
+  <p>Foods that may help support overall health and nail health include:
+  1. Fruits: Berries, oranges, apples<br>
+  2.Vegetables: Leafy greens, carrots, tomatoes<br>
+  3.Protein sources: Lean meats, poultry, fish, tofu, legumes<br>
+</p>
+
+
+{% endif %}
+{% endblock %}
+
+            </div>
+            {% endif %}
+            <br />
+         
+        
+          <div class="col-md-6">
+            <div class="map_container">
+              <div class="map-responsive">
+                <div>
+                
+                    <h2>Image Classification</h2>
+
+                    <form action="/upload" method="post" enctype="multipart/form-data">
+                    
+                        <div>
+                            <input
+                              type="file"
+                              name="img"
+                              required
+                              accept=".jpg,.png,.jpeg,.jfif"
+                            />
+                          </div>
+                 
+        
+                      <div class="d-flex">
+                        <button>SUBMIT</button>
+                      </div>
+                    </form>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- end contact section -->
+
+    <!-- info section -->
+
+    <section class="info_section layout_padding">
+      <div class="container">
+        <div class="info_contact">
+          <div class="row">
+            <div class="col-md-4">
+              <a href="">
+                <img src="/static/images/location-white.png" alt="" />
+                <span> Sri Vishnu College </span>
+              </a>
+            </div>
+            <div class="col-md-4">
+              <a href="">
+                <img src="/static/images/telephone-white.png" alt="" />
+                <span> Call : +912334567890 </span>
+              </a>
+            </div>
+            <div class="col-md-4">
+              <a href="">
+                <img src="/static/images/envelope-white.png" alt="" />
+                <span> demo@gmail.com </span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8 col-lg-9">
+            <div class="info_form">
+              <form action="">
+                <input type="text" placeholder="Enter your email" />
+                <button>subscribe</button>
+              </form>
+            </div>
+          </div>
+          <div class="col-md-4 col-lg-3">
+            <div class="info_social">
+              <div>
+                <a href="">
+                  <img src="images/fb.png" alt="" />
+                </a>
+              </div>
+              <div>
+                <a href="">
+                  <img src="/static/images/twitter.png" alt="" />
+                </a>
+              </div>
+              <div>
+                <a href="">
+                  <img src="/static/images/linkedin.png" alt="" />
+                </a>
+              </div>
+              <div>
+                <a href="">
+                  <img src="/static/images/instagram.png" alt="" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- end info section -->
+
+    <!-- footer section -->
+    <footer class="container-fluid footer_section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7 col-md-9 mx-auto">
+            <p>
+              &copy; 2019 All Rights Reserved By
+              <a href="https://html.design/">Free Html Templates</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- footer section -->
+
+    <script src="/static/js/jquery-3.4.1.min.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+  </body>
+</html>
